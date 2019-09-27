@@ -1,2 +1,37 @@
 @kyramnelson
 @lg845
+import csv
+import re, glob
+import nltk
+from nltk.stem import WordNetLemmatizer
+
+#establishes path for retrieval of the corpus
+path = r"C:\Users\amand\Documents\Python\Programs\NUWS\*txt"
+#file= "C:\Users\\amand\Documents\Sentimentpaper"
+brysbaert = r"C:\Users\amand\Documents\Python\Programs\*csv"
+lemmatizer = WordNetLemmatizer()
+
+#Creates dictionary from Brysbaert data with words as keys and valency scores as values
+brysdict={}
+reader = csv.reader(open(brysbaert))
+for row in reader:
+    brysdict[row[0]]=row[1:]
+
+file = file.split()
+lemmalist = []
+for word in file:
+    lemmalist.append(lemmatizer.lemmatize(word))
+
+#finds all lemmas in the brysbaert data and creates a list with their ratings
+valencylist=[]
+for item in lemmalist:
+    if item in brysdict:
+        value=brysdict[item]
+        valencylist.append(value)
+
+#Takes care of the math
+sum = 0
+for num in valencylist:
+    sum = sum + num
+average  = sum / len(valencylistlist)
+print(average)
